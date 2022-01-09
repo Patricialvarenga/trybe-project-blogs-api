@@ -1,5 +1,17 @@
 const { User } = require('../models');
 
+// Para usar o parâmetro raw, consultei este tópico:
+// https://stackoverflow.com/questions/46380563/get-only-datavalues-from-sequelize-orm
+const getAll = async () => {
+  try {
+    const attributes = ['id', 'displayName', 'email', 'image'];
+    const users = await User.findAll({ attributes, raw: true });
+    return users;
+  } catch (err) {
+    return { message: err.message };
+  }
+};
+
 const create = async (user) => {
   try {
     const response = await User.create(user);
@@ -23,4 +35,4 @@ const getByEmail = async (userEmail) => {
   }
 };
 
-module.exports = { create, getByEmail };
+module.exports = { create, getByEmail, getAll };
