@@ -12,6 +12,17 @@ const getAll = async () => {
   }
 };
 
+const getById = async (userId) => {
+  try {
+    const response = await User.findByPk(userId);
+    if (!response) return null;
+    const { id, displayName, email, image } = response;
+    return { user: { id, displayName, email, image } };
+  } catch (err) {
+    return { message: err.message };
+  }
+};
+
 const create = async (user) => {
   try {
     const response = await User.create(user);
@@ -35,4 +46,4 @@ const getByEmail = async (userEmail) => {
   }
 };
 
-module.exports = { create, getByEmail, getAll };
+module.exports = { create, getByEmail, getAll, getById };

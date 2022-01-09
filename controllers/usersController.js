@@ -15,6 +15,16 @@ const getAll = async (_req, res) => {
   }
 };
 
+const getById = async (req, res) => {
+  try {
+    const response = await service.getById(req.params.id);
+    if (!response) return res.status(404).json({ message: 'User does not exist' });
+    return res.status(200).json(response.user);
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+};
+
 const create = async (req, res) => {
 try {
   const { displayName, email, password, image } = req.body;
@@ -30,4 +40,4 @@ try {
   }
 };
 
-module.exports = { create, getAll };
+module.exports = { create, getAll, getById };
