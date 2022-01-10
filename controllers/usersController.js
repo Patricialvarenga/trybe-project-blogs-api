@@ -8,7 +8,6 @@ const jwtConfig = { expiresIn: '60m', algorithm: 'HS256' };
 const getAll = async (_req, res) => {
   try {
     const users = await service.getAll();
-    if (users.message) return res.status(500).json(users);
      return res.status(200).json(users);
   } catch (err) {
     return res.status(500).json({ message: err.message });
