@@ -28,6 +28,5 @@ const password = (req, res, next) => {
 module.exports = {
     name,
     email,
-    // registeredEmail,
     password,
 };
