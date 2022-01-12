@@ -23,5 +23,15 @@ const create = async (req, res) => {
     return res.status(500).json({ message: err.message });
   }
 };
+
+const getAll = async (req, res) => {
+  try { 
+    const blogPost = await service.getAllPost();
+
+  return res.status(200).json(blogPost);
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+};
     
-    module.exports = { create };
+    module.exports = { create, getAll };

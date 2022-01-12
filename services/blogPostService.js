@@ -40,4 +40,15 @@ const verifyCategory = async (categories) => {
   }
 };
 
-module.exports = { create, verifyCategory };
+const getAllPost = async () => {
+  try {
+    const allPosts = await BlogPost.findAll({ include: ['user', 'categories'] });
+
+  return allPosts;
+  } catch (err) {
+    console.log(err.message);
+    return { message: err.message };
+  }
+};
+
+module.exports = { create, verifyCategory, getAllPost };

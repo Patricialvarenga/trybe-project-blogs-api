@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
   },
   {
     timestamps: false,
+    tablename: 'Users',
   });
 
   User.associate = (models) => {
