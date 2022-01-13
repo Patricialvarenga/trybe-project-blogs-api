@@ -1,9 +1,9 @@
-const { BlogPost, PostCategory, User, Category } = require('../models');
+const { BlogPost, PostsCategory, User, Category } = require('../models');
 const { getAll } = require('./categoryService');
 
 // consultei o repositório do colega Flávio Cordeiro para desenvolver o service
 const createPostCategory = async (categoryId, postId) => {
-  const response = await PostCategory.create({ categoryId, postId });
+  const response = await PostsCategory.create({ categoryId, postId });
   return response;
 };
 
