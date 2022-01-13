@@ -1,4 +1,4 @@
-const { BlogPost, PostCategory } = require('../models');
+const { BlogPost, PostCategory, User, Category } = require('../models');
 const { getAll } = require('./categoryService');
 
 // consultei o repositório do colega Flávio Cordeiro para desenvolver o service
@@ -42,11 +42,13 @@ const verifyCategory = async (categories) => {
 
 const getAllPost = async () => {
   try {
-    const allPosts = await BlogPost.findAll({ include: ['user', 'categories'] });
-
+    const allPosts = await BlogPost.findAll({ include: 
+      [
+        { model: User, as: 'user', attributes: { exclude: ['password'] } }, 
+        { model: Category, as: 'categories', through: { attributes: [] } },
+      ] });
   return allPosts;
   } catch (err) {
-    console.log(err.message);
     return { message: err.message };
   }
 };
